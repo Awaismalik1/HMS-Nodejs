@@ -11,7 +11,7 @@ const ListUsers = ({ history }) => {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
-  //console.log(users)
+  console.log(users)
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -26,16 +26,16 @@ const ListUsers = ({ history }) => {
 
   const [searchTerm, setSearchTerm] = React.useState("");
 
-  // const handleChange = event => {
-  //     setSearchTerm(event.target.value);
-  // };
+   const handleChange = event => {
+       setSearchTerm(event.target.value);
+   };
 
   useEffect(() => {
     console.log("[ListUser] inside useEffect");
     if (userInfo && userInfo.role === 0) {
       console.log("[ListUser] inside useEffect inside userInfo condition");
       dispatch(listUsers());
-      //setData(users)
+      setData(users)
     } else {
       history.push("/login");
     }
@@ -45,6 +45,7 @@ const ListUsers = ({ history }) => {
     console.log(id);
     if (window.confirm("Are you sure")) {
       dispatch(deleteUser(id));
+      window.location.reload();
     }
   };
 
@@ -63,9 +64,9 @@ const ListUsers = ({ history }) => {
   };
 
   // search users
-  // const results = !searchTerm ? users : users && users.filter(user =>
-  //     user.name.toString().toLowerCase().includes(searchTerm)
-  // )
+  const results = !searchTerm ? users : users && users.filter(user =>
+       user.name.toString().toLowerCase().includes(searchTerm)
+   )
 
   const countUsers = () => {
     //return results && results.length
@@ -100,13 +101,14 @@ const ListUsers = ({ history }) => {
 
   return (
     <Layout
-      title="Profile"
+      title="profile"
       description="Update your profile"
       className="container-fluid"
     >
+
       <h4>
         <Link to="/add-users">
-          <button>Add User</button>
+          <button onClick={handlePageChange}>Add User</button>
         </Link>
       </h4>
 
@@ -118,8 +120,9 @@ const ListUsers = ({ history }) => {
         showError()
       ) : (
         <div className="row">
+
           <div className="col-lg-8">
-            <form>
+            <form >
               <div className="input-group">
                 <input
                   className="form-control"
@@ -127,7 +130,8 @@ const ListUsers = ({ history }) => {
                   onChange={(e) => {
                     e.preventDefault();
                     return searchUsers(e.target.value);
-                  }}
+                  }
+                  }
                 />
                 <div className="input-group-append">
                   <button className="btn btn-primary" type="button">
@@ -151,16 +155,15 @@ const ListUsers = ({ history }) => {
                 </tr>
               </thead>
               <tbody>
-                <div>
-                  {indexOfLastUser} | {indexOfFirstUser} | {data.length} |{" "}
-                  {users.length}
-                </div>
+
+
+
                 {users.length !== 0 ? (
-                  data
-                    .slice(indexOfFirstUser, indexOfLastUser)
-                    .map((user, i) => (
-                      <tr key={i}>
-                        <th scope="row">{user._id}</th>
+                  // data
+                    // .slice(indexOfFirstUser, indexOfLastUser)
+                    users.map((user) => (
+                      <tr>
+                        <td>{user._id}</td>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
 
@@ -233,7 +236,7 @@ const ListUsers = ({ history }) => {
                               </button>
                             </Link>
                           ) : (
-                            ""
+                            " "
                           )}
                         </td>
                       </tr>

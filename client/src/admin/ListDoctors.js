@@ -23,7 +23,7 @@ const ListDoctors = ({ history }) => {
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-    console.log(userInfo._id)
+
 
     const doctorDelete = useSelector((state) => state.doctorDelete)
     const { success: successDelete } = doctorDelete
@@ -90,9 +90,9 @@ const ListDoctors = ({ history }) => {
                                 <th scope="col">profile</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Id Number</th>
-                                {/* <th scope="col">Specialization</th>
+                                <th scope="col">Specialization</th>
                                 <th scope="col">Department</th>
-                                <th scope="col">Designation</th> */}
+                                <th scope="col">Designation</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -125,23 +125,23 @@ const ListDoctors = ({ history }) => {
                             </thead>
                             <tbody>
                             {
-                                doctors && doctors.map((doctor, i) => (
+                                doctors.map((doctors,i) => (
                                     <tr key={i}>
                                         <Fragment>
-                                            <th scope="row">{doctor._id.substring(0, 6)}</th>
+                                            <th scope="row">{doctors._id.substring(0, 6)}</th>
                                             {/* <td><img src={`http://localhost:8000${doctor.image}`} className="img-fluid rounded-circle"/></td> */}
-                                            <td>{doctor.user.name}</td>
-                                            <td>{doctor.idNumber}</td>
-                                            {/* <td>{doctor.specialization.name}</td> */}
-                                            {/* <td>{doctor.department.name}</td> */}
-                                            {/* <td>{doctor.designation.name}</td> */}
-                                            <td>{doctor.cell}</td>
-                                            <td>{moment(doctor.regDate).format("YYYY-MM-DD")}</td>
+                                            <td>{i.name}</td>
+                                            <td>{doctors.idNumber}</td>
+                                            <td>{doctors.specialization.name}</td>
+                                            <td>{doctors.department.name}</td>
+                                            <td>{doctors.designation.name}</td>
+                                            <td>{doctors.cell}</td>
+                                            <td>{moment(doctors.regDate).format("YYYY-MM-DD")}</td>
 
-                                            <td>{doctor.gender}</td>
+                                            <td>{doctors.gender}</td>
 
-                                            <td><Link to={`/update-doctor/${doctor._id}`}><i className="bi bi-pencil-square"></i></Link></td>
-                                            <td><i className="bi bi-trash" onClick={() => deleteHandler(doctor._id)}></i></td>
+                                            <td><Link to={`/update-doctor/${doctors._id}`}><i className="bi bi-pencil-square"></i></Link></td>
+                                            <td><i className="bi bi-trash" onClick={() => deleteHandler(doctors._id)}></i></td>
                                         </Fragment>
                                     </tr>
                                 ))

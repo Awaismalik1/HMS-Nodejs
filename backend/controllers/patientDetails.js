@@ -1,5 +1,5 @@
 const patientDetails = require('../models/patientDetails')
-const asyncHandler  = require( 'express-async-handler')
+const asyncHandler = require('express-async-handler')
 
 
 
@@ -10,7 +10,7 @@ const asyncHandler  = require( 'express-async-handler')
 
 
 
-exports.patientsById = asyncHandler (async (req, res, next, id) => {
+exports.patientsById = asyncHandler(async(req, res, next, id) => {
 
     await patientDetails.findById(id).populate("user").exec((err, patient) => {
         if (err || !patient) {
@@ -25,10 +25,11 @@ exports.patientsById = asyncHandler (async (req, res, next, id) => {
 
 
 
-exports.creatPatientDetails = asyncHandler(async (req, res) => {
+exports.creatPatientDetails = asyncHandler(async(req, res) => {
     //console.log(req.body)
     const patient = new patientDetails(req.body);
     await patient.save((err, data) => {
+        console.error("**Error is ", err);
         if (err) {
             return res.status(400).json({
                 error: err
@@ -39,10 +40,10 @@ exports.creatPatientDetails = asyncHandler(async (req, res) => {
 })
 
 
-exports.update = asyncHandler(async (req, res) => {
+exports.update = asyncHandler(async(req, res) => {
     try {
         console.log(req.body)
-        const patient = await patientDetails.findByIdAndUpdate({_id: req.params.id}, req.body, {
+        const patient = await patientDetails.findByIdAndUpdate({ _id: req.params.id }, req.body, {
             new: true,
             runValidators: true
         })
@@ -62,7 +63,7 @@ exports.update = asyncHandler(async (req, res) => {
 })
 
 
-exports.getPatientDetail = asyncHandler(async (req, res) => {
+exports.getPatientDetail = asyncHandler(async(req, res) => {
 
     const patient = await patientDetails.findById(req.params.id).populate("user")
 
@@ -94,30 +95,30 @@ exports.getPatientDetail = asyncHandler(async (req, res) => {
 
 
 
-exports.getPatientDetailUser = asyncHandler(async (req, res) => {
+exports.getPatientDetailUser = asyncHandler(async(req, res) => {
 
     const patient = await patientDetails.find({ user: req.params.id }).populate("user")
 
     if (patient) {
         res.json(patient)
-        // res.json({
-        //     _id: patient._id,
-        //
-        //     lastName: patient.lastName,
-        //     idNumber: patient.idNumber,
-        //     regDate: patient.regDate,
-        //     address: patient.address,
-        //     cell: patient.cell,
-        //     birthDate: patient.birthDate,
-        //     residence: patient.residence,
-        //     email: patient.email,
-        //     guardian: patient.guardian,
-        //     relation: patient.relation,
-        //     gender: patient.gender,
-        //     statusPatient: patient.statusPatient,
-        //     patientType: patient.patientType,
-        //     image: patient.image
-        // })
+            // res.json({
+            //     _id: patient._id,
+            //
+            //     lastName: patient.lastName,
+            //     idNumber: patient.idNumber,
+            //     regDate: patient.regDate,
+            //     address: patient.address,
+            //     cell: patient.cell,
+            //     birthDate: patient.birthDate,
+            //     residence: patient.residence,
+            //     email: patient.email,
+            //     guardian: patient.guardian,
+            //     relation: patient.relation,
+            //     gender: patient.gender,
+            //     statusPatient: patient.statusPatient,
+            //     patientType: patient.patientType,
+            //     image: patient.image
+            // })
     } else {
         res.status(404)
         throw new Error('Patient not found')
@@ -127,7 +128,7 @@ exports.getPatientDetailUser = asyncHandler(async (req, res) => {
 
 
 
-exports.remove = asyncHandler(async (req, res) => {
+exports.remove = asyncHandler(async(req, res) => {
 
     const { patient } = req.params
 
@@ -144,7 +145,7 @@ exports.remove = asyncHandler(async (req, res) => {
 })
 
 
-exports.list = asyncHandler(async (req, res) => {
+exports.list = asyncHandler(async(req, res) => {
     await patientDetails.find({}).populate("user").exec((err, data) => {
         if (err) {
             return res.status(400).json({

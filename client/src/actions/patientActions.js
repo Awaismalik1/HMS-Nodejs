@@ -1,6 +1,6 @@
 import axios from "axios";
-import {API} from "../config";
-import {logout} from "./userActions";
+import { API } from "../config";
+import { logout } from "./userActions";
 import {
     PATIENT_CREATE_FAIL,
     PATIENT_CREATE_REQUEST,
@@ -44,6 +44,7 @@ import {
 
 
 export const createPatient = (patient) => async (dispatch, getState) => {
+    console.log("** inside createPatient() ")
     try {
         dispatch({
             type: PATIENT_CREATE_REQUEST,
@@ -61,7 +62,7 @@ export const createPatient = (patient) => async (dispatch, getState) => {
         }
 
         const { data } = await axios.post(`${API}/patient-create/${userInfo._id}`, patient, config)
-
+        console.log("** Add Patient Data : " + data);
         dispatch({
             type: PATIENT_CREATE_SUCCESS,
             payload: data,
@@ -80,7 +81,7 @@ export const createPatient = (patient) => async (dispatch, getState) => {
     }
 }
 
-export const listPatients = () => async (dispatch, getState) => {
+export const listPatients = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_PATIENT_REQUEST,
@@ -99,16 +100,16 @@ export const listPatients = () => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/patient-list/${userInfo._id}`, config)
 
         dispatch({
-            type: LIST_PATIENT_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: LIST_PATIENT_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -120,7 +121,7 @@ export const listPatients = () => async (dispatch, getState) => {
 }
 
 
-export const deletePatients = (id) => async (dispatch, getState) => {
+export const deletePatients = (id) => async(dispatch, getState) => {
     try {
         dispatch({
             type: PATIENT_DELETE_REQUEST,
@@ -141,21 +142,21 @@ export const deletePatients = (id) => async (dispatch, getState) => {
         dispatch({ type: PATIENT_DELETE_SUCCESS })
     } catch (error) {
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
         dispatch({
-            type: PATIENT_DELETE_FAIL ,
+            type: PATIENT_DELETE_FAIL,
             payload: message,
         })
     }
 }
 
 
-export const listStatusEnums = () => async (dispatch, getState) => {
+export const listStatusEnums = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_STATUS_ENUMS_REQUEST,
@@ -174,16 +175,16 @@ export const listStatusEnums = () => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/patient/status-values/${userInfo._id}`, config)
 
         dispatch({
-            type: LIST_STATUS_ENUMS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: LIST_STATUS_ENUMS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -194,7 +195,7 @@ export const listStatusEnums = () => async (dispatch, getState) => {
     }
 }
 
-export const listGenderEnums = () => async (dispatch, getState) => {
+export const listGenderEnums = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_GENDER_ENUMS_REQUEST,
@@ -213,16 +214,16 @@ export const listGenderEnums = () => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/patient/gender-values/${userInfo._id}`, config)
 
         dispatch({
-            type: LIST_GENDER_ENUMS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: LIST_GENDER_ENUMS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -233,7 +234,7 @@ export const listGenderEnums = () => async (dispatch, getState) => {
     }
 }
 
-export const listTypeEnums = () => async (dispatch, getState) => {
+export const listTypeEnums = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_TYPES_ENUMS_REQUEST,
@@ -252,16 +253,16 @@ export const listTypeEnums = () => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/patient/patient-type-values/${userInfo._id}`, config)
 
         dispatch({
-            type: LIST_TYPES_ENUMS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: LIST_TYPES_ENUMS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -272,7 +273,7 @@ export const listTypeEnums = () => async (dispatch, getState) => {
     }
 }
 
-export const updatePatients = (pat) => async (dispatch, getState) => {
+export const updatePatients = (pat) => async(dispatch, getState) => {
     try {
         dispatch({
             type: UPDATE_PATIENT_REQUEST,
@@ -304,9 +305,9 @@ export const updatePatients = (pat) => async (dispatch, getState) => {
     } catch (error) {
         console.log(error.response)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -317,7 +318,7 @@ export const updatePatients = (pat) => async (dispatch, getState) => {
     }
 }
 
-export const patientsDetails = (id) => async (dispatch, getState) => {
+export const patientsDetails = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: PATIENT_DETAILS_REQUEST })
 
@@ -344,16 +345,15 @@ export const patientsDetails = (id) => async (dispatch, getState) => {
         console.log(error)
         dispatch({
             type: PATIENT_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message :
+                error.message,
         })
     }
 }
 
 
-export const patientsDetailsUser = (id) => async (dispatch, getState) => {
+export const patientsDetailsUser = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: PATIENT_DETAILS_USER_REQUEST })
 
@@ -380,10 +380,9 @@ export const patientsDetailsUser = (id) => async (dispatch, getState) => {
         console.log(error)
         dispatch({
             type: PATIENT_DETAILS_USER_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message :
+                error.message,
         })
     }
 }

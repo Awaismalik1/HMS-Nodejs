@@ -138,8 +138,8 @@ const  UpdatePatientProfile = ({ history: history1, match}) => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        dispatch(updatePatients({ _id: id, user, lastName, idNumber, regDate,
-            address, cell, birthDate, residence, email, guardian, relation, gender, statusPatient, patientType, image }))
+        dispatch(updatePatients({ _id: id, user, lastName,  regDate,
+            address, cell,  gender, statusPatient, patientType }))
         //history1.push('/list-patients')
     }
 
@@ -194,11 +194,11 @@ const  UpdatePatientProfile = ({ history: history1, match}) => {
                         <input type="text" className="form-control"  placeholder="Last Number" value={lastName}
                                onChange={(e) => setLastName(e.target.value)}/>
                     </div>
-                    <div className="form-group col-md-3">
+                    {/* <div className="form-group col-md-3">
                         <label className="font-weight-bold" htmlFor="inputAddress">Id Number</label>
                         <input type="text" className="form-control"  placeholder="Id Number" value={idNumber}
                                onChange={(e) => setIdNumber(e.target.value)}/>
-                    </div>
+                    </div> */}
                     <div className="form-group col-md-3">
                         <label className="font-weight-bold" htmlFor="inputAddress">Registration date</label>
                         <DatePicker   value={regDate}   onChange={date => setRegDate(moment(date).format("YYYY-MM-DD"))} className="form-control" />
@@ -206,54 +206,20 @@ const  UpdatePatientProfile = ({ history: history1, match}) => {
                 </div>
 
                 <div className="form-row">
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-4">
                         <label className="font-weight-bold" htmlFor="exampleFormControlTextarea1">Address</label>
                         <textarea className="form-control"
-                                  placeholder="write address" rows="3" value={address}
+                                  placeholder="write address" rows="1" value={address}
                                   onChange={(e) => setAddress(e.target.value)}/>
                     </div>
 
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-4">
                         <label className="font-weight-bold" htmlFor="inputAddress">Cell No</label>
                         <input type="text" className="form-control"  placeholder="cell no" value={cell}
                                onChange={(e) => setCell(e.target.value)}/>
                     </div>
 
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Date of Birth</label>
-
-                        <DatePicker  value={birthDate} onChange={date => setBirthDate(moment(date).format("YYYY-MM-DD"))} className="form-control" />
-                    </div>
-
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Residence</label>
-                        <input type="text" className="form-control"  placeholder="residence" value={residence}
-                               onChange={(e) => setResidence(e.target.value)}/>
-                    </div>
-
-                </div>
-
-
-                <div className="form-row">
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Email</label>
-                        <input type="email" className="form-control"  placeholder="email" value={email}
-                               onChange={(e) => setEmail(e.target.value)}/>
-                    </div>
-
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Gurdian</label>
-                        <input type="text" className="form-control"  placeholder="guardian" value={guardian}
-                               onChange={(e) => setGuardian(e.target.value)}/>
-                    </div>
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Relation</label>
-                        <input type="text" className="form-control"  placeholder="relation" value={relation}
-                               onChange={(e) => setRelation(e.target.value)}/>
-                    </div>
-
-
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-4">
                         <label className="font-weight-bold" htmlFor="exampleFormControlSelect1">Gender</label>
                         <select onChange={(e) => setGender(e.target.value)} className="form-control" id="exampleFormControlSelect1">
                             <option>Select Gender</option>
@@ -265,6 +231,42 @@ const  UpdatePatientProfile = ({ history: history1, match}) => {
                             ))}
                         </select>
                     </div>
+
+                    {/* <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Date of Birth</label>
+
+                        <DatePicker  value={birthDate} onChange={date => setBirthDate(moment(date).format("YYYY-MM-DD"))} className="form-control" />
+                    </div>
+
+                    <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Residence</label>
+                        <input type="text" className="form-control"  placeholder="residence" value={residence}
+                               onChange={(e) => setResidence(e.target.value)}/>
+                    </div> */}
+
+                </div>
+
+
+                <div className="form-row">
+                    {/* <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Email</label>
+                        <input type="email" className="form-control"  placeholder="email" value={email}
+                               onChange={(e) => setEmail(e.target.value)}/>
+                    </div> */}
+
+                    {/* <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Gurdian</label>
+                        <input type="text" className="form-control"  placeholder="guardian" value={guardian}
+                               onChange={(e) => setGuardian(e.target.value)}/>
+                    </div> */}
+                    {/* <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Relation</label>
+                        <input type="text" className="form-control"  placeholder="relation" value={relation}
+                               onChange={(e) => setRelation(e.target.value)}/>
+                    </div> */}
+
+
+
 
                 </div>
 
@@ -295,7 +297,7 @@ const  UpdatePatientProfile = ({ history: history1, match}) => {
                         </select>
                     </div>
 
-                    <div className="form-group col-md-4">
+                    {/* <div className="form-group col-md-4">
                         <label className="font-weight-bold" htmlFor="exampleFormControlFile1">Upload Photo</label>
                         <input type="file"
                                onChange={uploadFileHandler} className="form-control-file" id="exampleFormControlFile1"/>
@@ -307,7 +309,7 @@ const  UpdatePatientProfile = ({ history: history1, match}) => {
                             </div>
                         )}
                         <button className="invisible" >Submit</button>
-                    </div>
+                    </div> */}
 
                 </div>
 

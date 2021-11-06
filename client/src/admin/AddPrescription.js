@@ -87,7 +87,7 @@ const AddPrescription = ({ history: history1 }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(createPrescription({ user, treatment, medicine, time, days, take, test, paid, history}))
+        dispatch(createPrescription({ user, treatment, medicine, time, days,  test, paid, history}))
 
     }
 
@@ -123,17 +123,17 @@ const AddPrescription = ({ history: history1 }) => {
                 </div>
 
                 <div className="form-row">
-                <div className="form-group col-md-3">
+                    <div className="form-group col-md-3">
                     <label htmlFor="inputAddress">Medicine</label>
                     <input type="text" className="form-control"  placeholder="Medicine" value={medicine}
                            onChange={(e) => setMedicine(e.target.value)}/>
-                </div>
-                <div className="form-group col-md-3">
-                    <label htmlFor="inputAddress2">Time's as day</label>
-                    <input type="text" className="form-control" id="inputAddress2"
+                    </div>
+                    <div className="form-group col-md-3">
+                        <label htmlFor="inputAddress2">Time's as day</label>
+                            <input type="text" className="form-control" id="inputAddress2"
                            placeholder="e.g 2 or 3" value={time}
-                           onChange={(e) => setTime(e.target.value)}/>
-                </div>
+                            onChange={(e) => setTime(e.target.value)} />
+                    </div>
                     <div className="form-group col-md-3">
                         <label htmlFor="inputAddress">No of days</label>
                         <input type="text" className="form-control"  placeholder="Medicine" value={days}
@@ -153,7 +153,7 @@ const AddPrescription = ({ history: history1 }) => {
                     </div>
                 </div>
 
-                
+
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="exampleFormControlSelect2">Tests</label>
@@ -170,7 +170,7 @@ const AddPrescription = ({ history: history1 }) => {
                     <div className="form-group col-md-6">
                         <label htmlFor="exampleFormControlTextarea1">Case History</label>
                         <textarea className="form-control" id="exampleFormControlTextarea1" value={history}
-                                  onChange={(e) => setHistory(e.target.value)} placeholder="write case history" rows="3"/>
+                                  onChange={(e) => setHistory(e.target.value)} placeholder="write case history" rows="1"/>
                     </div>
 
                 </div>
@@ -200,7 +200,7 @@ const AddPrescription = ({ history: history1 }) => {
 
     return  (
         <Layout title="Category treatment Form">
-            
+
             <>
             <h2 className="mb-4">Add Prescription</h2>
                 {showLoading()}

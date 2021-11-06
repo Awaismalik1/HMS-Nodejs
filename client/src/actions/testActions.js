@@ -50,7 +50,7 @@ import { API } from "../config";
 
 
 
-export const listPaidEnums = () => async (dispatch, getState) => {
+export const listPaidEnums = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_PAID_ENUMS_REQUEST,
@@ -69,16 +69,16 @@ export const listPaidEnums = () => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/test/paid-values/${userInfo._id}`, config)
 
         dispatch({
-            type: LIST_PAID_ENUMS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: LIST_PAID_ENUMS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -91,7 +91,7 @@ export const listPaidEnums = () => async (dispatch, getState) => {
 
 
 
-export const createCatTest = (cat) => async (dispatch, getState) => {
+export const createCatTest = (cat) => async(dispatch, getState) => {
     try {
         dispatch({
             type: TEST_CATEGORY_CREATE_REQUEST,
@@ -128,7 +128,7 @@ export const createCatTest = (cat) => async (dispatch, getState) => {
 }
 
 
-export const listCatTests = () => async (dispatch, getState) => {
+export const listCatTests = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_CAT_REQUEST,
@@ -154,9 +154,9 @@ export const listCatTests = () => async (dispatch, getState) => {
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -168,7 +168,7 @@ export const listCatTests = () => async (dispatch, getState) => {
 }
 
 
-export const deleteTestCat = (id) => async (dispatch, getState) => {
+export const deleteTestCat = (id) => async(dispatch, getState) => {
     try {
         dispatch({
             type: TEST_CAT_DELETE_REQUEST,
@@ -189,9 +189,9 @@ export const deleteTestCat = (id) => async (dispatch, getState) => {
         dispatch({ type: TEST_CAT_DELETE_SUCCESS })
     } catch (error) {
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -202,7 +202,7 @@ export const deleteTestCat = (id) => async (dispatch, getState) => {
     }
 }
 
-export const updateTestCat = (cat) => async (dispatch, getState) => {
+export const updateTestCat = (cat) => async(dispatch, getState) => {
     try {
         dispatch({
             type: TEST_UPDATE_CAT_REQUEST,
@@ -234,9 +234,9 @@ export const updateTestCat = (cat) => async (dispatch, getState) => {
     } catch (error) {
         console.log(error.response)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -247,7 +247,7 @@ export const updateTestCat = (cat) => async (dispatch, getState) => {
     }
 }
 
-export const cateTestDetails = (id) => async (dispatch, getState) => {
+export const cateTestDetails = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: TEST_CAT_DETAILS_REQUEST })
 
@@ -274,16 +274,14 @@ export const cateTestDetails = (id) => async (dispatch, getState) => {
         console.log(error)
         dispatch({
             type: TEST_CAT_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message,
         })
     }
 }
 
 
-export const listTestsResults = () => async (dispatch, getState) => {
+export const listTestsResults = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_TEST_REQUEST,
@@ -300,18 +298,19 @@ export const listTestsResults = () => async (dispatch, getState) => {
         }
 
         const { data } = await axios.get(`${API}/test-list/${userInfo._id}`, config)
-
+        console.log("**testActions test list : ", data)
         dispatch({
-            type: LIST_TEST_SUCCESS,
-            payload: data,
-        })
-        console.log(data)
+                type: LIST_TEST_SUCCESS,
+                payload: data,
+            })
+            // console.log("junaid0")
+
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -323,7 +322,7 @@ export const listTestsResults = () => async (dispatch, getState) => {
 }
 
 
-export const deleteTests = (id) => async (dispatch, getState) => {
+export const deleteTests = (id) => async(dispatch, getState) => {
     try {
         dispatch({
             type: TEST_DELETE_REQUEST,
@@ -344,9 +343,9 @@ export const deleteTests = (id) => async (dispatch, getState) => {
         dispatch({ type: TEST_DELETE_SUCCESS })
     } catch (error) {
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -358,7 +357,7 @@ export const deleteTests = (id) => async (dispatch, getState) => {
 }
 
 
-export const updateTest = (test) => async (dispatch, getState) => {
+export const updateTest = (test) => async(dispatch, getState) => {
     try {
         dispatch({
             type: TEST_UPDATE_REQUEST,
@@ -390,9 +389,9 @@ export const updateTest = (test) => async (dispatch, getState) => {
     } catch (error) {
         console.log(error.response)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -404,7 +403,7 @@ export const updateTest = (test) => async (dispatch, getState) => {
 }
 
 
-export const createTest = (test) => async (dispatch, getState) => {
+export const createTest = (test) => async(dispatch, getState) => {
     try {
         dispatch({
             type: TEST_CREATE_REQUEST,
@@ -441,7 +440,7 @@ export const createTest = (test) => async (dispatch, getState) => {
 }
 
 
-export const testsDetails = (id) => async (dispatch, getState) => {
+export const testsDetails = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: TEST_DETAILS_REQUEST })
 
@@ -460,24 +459,22 @@ export const testsDetails = (id) => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/test-detail/${id}/${userInfo._id}`, config)
 
         dispatch({
-            type: TEST_DETAILS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: TEST_DETAILS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         dispatch({
             type: TEST_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message,
         })
     }
 }
 
 
-export const testsDetailsUser = (id) => async (dispatch, getState) => {
+export const testsDetailsUser = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: TEST_USER_DETAILS_REQUEST })
 
@@ -496,18 +493,16 @@ export const testsDetailsUser = (id) => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/test-detail-user/${id}/${userInfo._id}`, config)
 
         dispatch({
-            type: TEST_USER_DETAILS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: TEST_USER_DETAILS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         dispatch({
             type: TEST_USER_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message,
         })
     }
 }

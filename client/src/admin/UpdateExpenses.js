@@ -17,11 +17,11 @@ const UpdateExpenses = ({ history: history1, match }) => {
     const id = match.params.id
 
     const [name, setName] = useState('')
-    const [department, setDepartment] = useState('')
+    // const [department, setDepartment] = useState('')
     const [amount, setAmount] = useState(0)
-    const [description, setDescription] = useState('')
-    const [fromDate, setFromDate] = useState(new Date())
-    const [to, setTo] = useState(new Date())
+    // const [description, setDescription] = useState('')
+    const [date, setDate] = useState(new Date())
+    // const [to, setTo] = useState(new Date())
     const [paid, setPaid] = useState("")
 
     const dispatch = useDispatch()
@@ -53,16 +53,16 @@ const UpdateExpenses = ({ history: history1, match }) => {
         } else {
             if (expense._id !== id) {
                 dispatch(listPaidEnums())
-                dispatch(listDeparts())
+                // dispatch(listDeparts())
                 dispatch(expensesDetails(id))
 
             } else {
                setName(expense.name)
-                setDepartment(expense.department)
+                // setDepartment(expense.department)
                 setAmount(expense.amount)
-                setDescription(expense.description)
-                setFromDate(moment(expense.fromDate).format("YYYY-MM-DD"))
-                setTo(moment(expense.to).format("YYYY-MM-DD"))
+                // setDescription(expense.description)
+                setDate(moment(expense.Date).format("YYYY-MM-DD"))
+                // setTo(moment(expense.to).format("YYYY-MM-DD"))
                 setPaid(expense.paid)
             }
         }
@@ -95,7 +95,7 @@ const UpdateExpenses = ({ history: history1, match }) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(updateExpense({ _id: id, name, department, amount, description, fromDate, to,  paid }))
+        dispatch(updateExpense({ _id: id, name, amount, date,  paid }))
     }
 
     const UpdateExpenseForm = () => (
@@ -120,21 +120,21 @@ const UpdateExpenses = ({ history: history1, match }) => {
                 <div className="form-row">
 
                     <div className="form-group col-md-6">
-                        <label className="font-weight-bold" htmlFor="inputAddress">From date</label>
-                        <DatePicker   value={fromDate}   onChange={date => setFromDate(moment(date).format("YYYY-MM-DD"))} className="form-control" />
+                        <label className="font-weight-bold" htmlFor="inputAddress">Date</label>
+                        <DatePicker   value={date}   onChange={date => setDate(moment(date).format("YYYY-MM-DD"))} className="form-control" />
                     </div>
 
-                    <div className="form-group col-md-6">
+                    {/* <div className="form-group col-md-6">
                         <label className="font-weight-bold" htmlFor="inputAddress">To date</label>
 
                         <DatePicker  value={to}   onChange={date => setTo(moment(date).format("YYYY-MM-DD"))} className="form-control" />
-                    </div>
+                    </div> */}
 
 
                 </div>
 
 
-                <div className="form-row">
+                {/* <div className="form-row">
 
                     <div className="form-group col-md-6">
                         <label className="font-weight-bold" htmlFor="exampleFormControlSelect2">Department</label>
@@ -156,7 +156,7 @@ const UpdateExpenses = ({ history: history1, match }) => {
                     </div>
 
 
-                </div>
+                </div> */}
 
                 <div className="form-row">
                     <div className="form-group col-md-3">

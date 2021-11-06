@@ -25,17 +25,17 @@ const  UpdateMedicine = ({ history: history1, match}) => {
     const [name, setName] = useState('')
     const [genericName, setGenericName] = useState('')
     const [batchNo, setBatchNo] = useState(0)
-    const [barCode, setBarCode] = useState(0)
-    const [description, setDescription] = useState('')
+    // const [barCode, setBarCode] = useState(0)
+    // const [description, setDescription] = useState('')
     const [quantity, setQuantity] = useState(0)
     const [unitWeight, setUnitWeight] = useState(0)
     const [type, setType] = useState('')
-    const [manDate, setManDate] = useState(new Date());
-    const [expDate, setExpDate] = useState(new Date());
-    const [cost, setCost] = useState(2200);
-    const [retailCost, setRetailCost] = useState(0);
-    const [effects, setEffects] = useState('')
-    const [vendor, setVendor] = useState('')
+    // const [manDate, setManDate] = useState(new Date());
+    // const [expDate, setExpDate] = useState(new Date());
+    // const [cost, setCost] = useState(2200);
+    // const [retailCost, setRetailCost] = useState(0);
+    // const [effects, setEffects] = useState('')
+    // const [vendor, setVendor] = useState('')
 
 
     const dispatch = useDispatch()
@@ -74,7 +74,7 @@ const  UpdateMedicine = ({ history: history1, match}) => {
         } else {
 
             if (medicine._id !== id) {
-                dispatch(listVendors())
+                // dispatch(listVendors())
                 dispatch(listTypesEnums())
                 dispatch(detailsMedicine(id))
 
@@ -83,17 +83,17 @@ const  UpdateMedicine = ({ history: history1, match}) => {
                 setName(medicine.name)
                 setGenericName(medicine.genericName)
                 setBatchNo(medicine.batchNo)
-                setBarCode(medicine.barCode)
-                setDescription(medicine.description)
+                // setBarCode(medicine.barCode)
+                // setDescription(medicine.description)
                 setQuantity(medicine.quantity)
                 setUnitWeight(medicine.unitWeight)
                 setType(medicine.type)
-                setManDate(moment(medicine.manDate).format("YYYY-MM-DD"))
-                setExpDate(moment(medicine.expDate).format("YYYY-MM-DD"))
-                setCost(medicine.cost)
-                setRetailCost(medicine.retailCost)
-                setEffects(medicine.effects)
-                setVendor(medicine.vendor)
+                // setManDate(moment(medicine.manDate).format("YYYY-MM-DD"))
+                // setExpDate(moment(medicine.expDate).format("YYYY-MM-DD"))
+                // setCost(medicine.cost)
+                // setRetailCost(medicine.retailCost)
+                // setEffects(medicine.effects)
+                // setVendor(medicine.vendor)
             }
 
         }
@@ -129,8 +129,8 @@ const  UpdateMedicine = ({ history: history1, match}) => {
     const submitHandler = (e) => {
         e.preventDefault()
 
-        dispatch(updateMedicine({ _id: id, name, genericName, batchNo, barCode, description, quantity, unitWeight,
-            type, manDate, expDate, cost, retailCost, vendor, effects }))
+        dispatch(updateMedicine({ _id: id, name, genericName, batchNo, quantity, unitWeight,
+            type}))
     }
 
 
@@ -154,11 +154,11 @@ const  UpdateMedicine = ({ history: history1, match}) => {
                         <input type="text" className="form-control"  placeholder="batch no" value={batchNo}
                                onChange={(e) => setBatchNo(e.target.value)}/>
                     </div>
-                    <div className="form-group col-md-3">
+                    {/* <div className="form-group col-md-3">
                         <label htmlFor="inputAddress">Bar Code</label>
                         <input type="text" className="form-control"  placeholder="barcode no" value={barCode}
                                onChange={(e) => setBarCode(e.target.value)}/>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className="form-row">
@@ -190,11 +190,11 @@ const  UpdateMedicine = ({ history: history1, match}) => {
 
 
 
-                <div className="form-row">
+                {/* <div className="form-row">
 
                     <div className="form-group col-md-6">
                         <label htmlFor="inputAddress">Manufacture </label>
-                        
+
                         <DatePicker  value={manDate} onChange={date => setManDate(moment(date).format("YYYY-MM-DD"))} className="form-control" />
                     </div>
 
@@ -205,10 +205,10 @@ const  UpdateMedicine = ({ history: history1, match}) => {
 
 
 
-                </div>
+                </div> */}
 
 
-                <div className="form-row">
+                {/* <div className="form-row">
 
                     <div className="form-group col-md-6">
                         <label htmlFor="inputAddress">Cost</label>
@@ -253,7 +253,7 @@ const  UpdateMedicine = ({ history: history1, match}) => {
                     </div>
 
 
-                </div>
+                </div> */}
 
 
                 <button type="submit" className="btn btn-primary">Save</button>

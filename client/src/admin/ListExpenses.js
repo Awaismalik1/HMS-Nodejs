@@ -81,7 +81,7 @@ const ListExpenses = ({ history }) => {
                                 <th scope="col">Date</th>
                                 {/* <th scope="col">To</th> */}
                                 <th scope="col">Status</th>
-                                <th scope="col">Edit</th>
+                                {/* <th scope="col">Edit</th> */}
                                 <th scope="col">Delete</th>
                             </tr>
                             </thead>
@@ -107,7 +107,7 @@ const ListExpenses = ({ history }) => {
                                 <th scope="col">Date</th>
                                 {/* <th scope="col">To</th> */}
                                 <th scope="col">Status</th>
-                                <th scope="col">Edit</th>
+                                {/* <th scope="col">Edit</th> */}
                                 <th scope="col">Delete</th>
                             </tr>
                             </thead>
@@ -125,7 +125,7 @@ const ListExpenses = ({ history }) => {
                                             {/* <td>{moment(expense.to).format("YYYY-MM-DD")}</td> */}
                                             <td>{expense.paid === "Paid" ? (<button type="button" className="btn btn-success btn-sm">{expense.paid}</button>) :
                                                 (<button type="button" className="btn btn-danger btn-sm">{expense.paid}</button>) }</td>
-                                            <td><Link to={`/update-expenses/${expense._id}`}><i className="bi bi-pencil-square"/></Link></td>
+                                            {/* <td><Link to={`/update-expenses/${expense._id}`}><i className="bi bi-pencil-square"/></Link></td> */}
                                             <td><i className="bi bi-trash" onClick={() => deleteHandler(expense._id)}/></td>
                                         </Fragment>
                                     </tr>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../core/Layout";
 import { useSelector, useDispatch } from "react-redux";
-import { listUsers } from "../actions/userActions";
+import { listUsers, deleteUser } from "../actions/userActions";
 import { listPrescriptions } from "../actions/prescriptionActions";
 import { listExpenses } from "../actions/expensesActions";
 import { listTestsResults } from "../actions/testActions";
@@ -27,7 +27,13 @@ const AdminDashboard = () => {
   const countPatients = () => {
     return users.filter((user) => user.role === 2).length;
   };
-
+  const deleteHandler = (id) => {
+    // console.log(id);
+    if (window.confirm("Are you sure")) {
+      dispatch(deleteUser(id));
+      window.location.reload();
+    }
+  };
   // expenses list
   const expenseList = useSelector((state) => state.expenseList);
   const { expenses } = expenseList;
@@ -70,7 +76,7 @@ const AdminDashboard = () => {
 
         return acc;
       }, 0);
-
+      console.log("Total : ",total)
     return total;
   };
 
@@ -85,7 +91,7 @@ const AdminDashboard = () => {
       tests &&
       tests.reduce((acc, curr) => {
         if (curr.paid === "Paid") {
-          acc += parseInt(curr.testName.cost);
+          acc += curr.testName!=null && curr.testName != undefined?parseInt(curr.testName.cost):0;
         }
 
         return acc;
@@ -99,71 +105,71 @@ const AdminDashboard = () => {
     dispatch(listPrescriptions());
     dispatch(listTestsResults());
     dispatch(listExpenses());
-    dispatch(listVacApp());
-    //getExpensesData()
+    // dispatch(listVacApp());
+    getExpensesData()
     //getAppointmentData()
   }, [dispatch]);
 
-  const getVaccineData = () => {
-    let malaria = 0;
-    let coronaVirus = 0;
-    let vaccineCount = [];
+  // const getVaccineData = () => {
+  //   let malaria = 0;
+  //   let coronaVirus = 0;
+  //   let vaccineCount = [];
 
-    appointments &&
-      appointments.forEach((data) => {
-        if (data.vaccine.name === "CoronaVirus") {
-          coronaVirus++;
-        } else if (data.vaccine.name === "Malaria") {
-          malaria++;
-        }
-      });
+  //   appointments &&
+  //     appointments.forEach((data) => {
+  //       if (data.vaccine.name === "CoronaVirus") {
+  //         coronaVirus++;
+  //       } else if (data.vaccine.name === "Malaria") {
+  //         malaria++;
+  //       }
+  //     });
 
-    vaccineCount.push(coronaVirus, malaria);
+  //   vaccineCount.push(coronaVirus, malaria);
 
-    let labels = ["Covid", "Malaria"];
-    let customLabels = labels.map(
-      (label, index) => `${label}: ${vaccineCount[index]}`
-    );
+  //   let labels = ["Covid", "Malaria"];
+  //   let customLabels = labels.map(
+  //     (label, index) => `${label}: ${vaccineCount[index]}`
+  //   );
 
-    return { vaccineCount, customLabels };
-  };
+  //   return { vaccineCount, customLabels };
+  // };
 
   // get appointment data
-  const getAppointmentData = () => {
-    let vaccinated = 0;
-    let notVaccinated = 0;
+  // const getAppointmentData = () => {
+  //   let vaccinated = 0;
+  //   let notVaccinated = 0;
 
-    appointments &&
-      appointments
-        .filter((filtered) => filtered.vaccine.name === "CoronaVirus")
-        .forEach((data) => {
-          if (data.taken === "Yes") {
-            vaccinated++;
-          } else {
-            notVaccinated++;
-          }
-        });
+  //   appointments &&
+  //     appointments
+  //       .filter((filtered) => filtered.vaccine.name === "CoronaVirus")
+  //       .forEach((data) => {
+  //         if (data.taken === "Yes") {
+  //           vaccinated++;
+  //         } else {
+  //           notVaccinated++;
+  //         }
+  //       });
 
-    console.log(`total vaccinated number is`, vaccinated);
-    console.log(`total Notvaccinated number is`, notVaccinated);
-    return { vaccinated, notVaccinated };
-  };
+  //   console.log(`total vaccinated number is`, vaccinated);
+  //   console.log(`total Notvaccinated number is`, notVaccinated);
+  //   return { vaccinated, notVaccinated };
+  // };
 
   // chart for appointments
-  const chartAppointment = () => {
-    let data = getAppointmentData();
+  // const chartAppointment = () => {
+  //   let data = getAppointmentData();
 
-    let appointmentList = [];
+  //   let appointmentList = [];
 
-    appointmentList.push(data.vaccinated, data.notVaccinated);
+  //   appointmentList.push(data.vaccinated, data.notVaccinated);
 
-    let labels = ["Vaccinated", "Not Vaccinated"];
-    let customLabels = labels.map(
-      (label, index) => `${label}: ${appointmentList[index]}`
-    );
+  //   let labels = ["Vaccinated", "Not Vaccinated"];
+  //   let customLabels = labels.map(
+  //     (label, index) => `${label}: ${appointmentList[index]}`
+  //   );
 
-    return { labels, customLabels, appointmentList };
-  };
+  //   return { labels, customLabels, appointmentList };
+  // };
 
   // get data for charts
   const getData = () => {
@@ -305,25 +311,25 @@ const AdminDashboard = () => {
                 <div className="card-body">Payments</div>
                 <div className="card-footer d-flex align-items-center justify-content-between">
                   <a className="small text-white stretched-link" href="#">
-                    Cash {totalCollected() + totalCollected1()}
+                    RS. {totalCollected() + totalCollected1()}
                   </a>
                   <div className="small text-white">
-                    <i className="fas fa-angle-right" />
+                    {/* <i className="fas fa-angle-right" /> */}
                   </div>
                 </div>
               </div>
             </div>
             <div className="col-xl-3 col-md-6">
               <div className="card bg-danger text-white mb-4">
-                <div className="card-body">
-                  Expenses {getAppointmentData().vaccinated}
+                <div className="card-body">Expenses
+                  {/* Expenses {getAppointmentData().vaccinated} */}
                 </div>
                 <div className="card-footer d-flex align-items-center justify-content-between">
                   <a className="small text-white stretched-link" href="#">
-                    Cash {totalExpenses()}
+                    Ksh {totalExpenses()}
                   </a>
                   <div className="small text-white">
-                    <i className="fas fa-angle-right" />
+                    {/* <i className="fas fa-angle-right" /> */}
                   </div>
                 </div>
               </div>
@@ -493,7 +499,10 @@ const AdminDashboard = () => {
                           </Link>
                         </td>
                         <td>
-                          <i className="bi bi-trash" />
+                        <i
+                              className="bi bi-trash"
+                              onClick={() => deleteHandler(user._id)}
+                            />
                         </td>
                       </tr>
                     ))}

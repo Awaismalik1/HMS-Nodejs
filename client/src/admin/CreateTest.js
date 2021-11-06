@@ -36,7 +36,7 @@ const CreateTest = ({ history }) => {
     const { pays } = testPaidList
 
     useEffect(() => {
-        
+
         if (userInfo && userInfo.role === 0) {
             dispatch(listUsers())
             dispatch(listCatTests())
@@ -50,7 +50,7 @@ const CreateTest = ({ history }) => {
             history.push('/login')
         }
 
-        
+
     }, [success, dispatch, userInfo])
 
     const submitHandler = (e) => {

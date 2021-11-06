@@ -11,7 +11,7 @@ const {
     updateUser,
     userById,
     registerUsers
-} = require( '../controllers/user.js')
+} = require('../controllers/user.js')
 const { protect, admin } = require('../middleware/authMiddleware.js')
 
 

@@ -80,12 +80,12 @@ const ListMedicine = ({ history }) => {
                   <th scope="col">name</th>
                   <th scope="col">Generic Name</th>
                   <th scope="col">Batch No</th>
-                  <th scope="col">Bar Code</th>
+                  {/* <th scope="col">Bar Code</th> */}
                   <th scope="col">Quantity</th>
                   <th scope="col">Type</th>
-                  <th scope="col">Man Date</th>
+                  {/* <th scope="col">Man Date</th>
                   <th scope="col">Expiry Date</th>
-                  <th scope="col">Cost</th>
+                  <th scope="col">Cost</th> */}
                   {/* <th scope="col">Vendors</th> */}
                   <th scope="col">Edit</th>
                   <th scope="col">Delete</th>
@@ -109,13 +109,13 @@ const ListMedicine = ({ history }) => {
                   <th scope="col">name</th>
                   <th scope="col">Generic Name</th>
                   <th scope="col">Batch No</th>
-                  <th scope="col">Bar Code</th>
+                  {/* <th scope="col">Bar Code</th> */}
                   <th scope="col">Quantity</th>
                   <th scope="col">Type</th>
-                  <th scope="col">Man Date</th>
+                  {/* <th scope="col">Man Date</th>
                   <th scope="col">Expiry Date</th>
                   <th scope="col">Cost</th>
-                  <th scope="col">Vendors</th>
+                  <th scope="col">Vendors</th> */}
                   <th scope="col">Edit</th>
                   <th scope="col">Delete</th>
                 </tr>
@@ -134,7 +134,7 @@ const ListMedicine = ({ history }) => {
                         <td>{med.type}</td>
                         {/* <td>{moment(med.manDate).format("YYYY-MM-DD")}</td>
                         <td>{moment(med.expDate).format("YYYY-MM-DD")}</td> */}
-                        <td>{med.cost}</td>
+                        {/* <td>{med.cost}</td> */}
                         {/* <td>{med.vendor.name}</td> */}
                         <td>
                           <Link to={`/update-medicine/${med._id}`}>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import React, { Component } from 'react';
 import {
     PRESCRIPTION_CREATE_FAIL,
     PRESCRIPTION_CREATE_REQUEST,
@@ -34,7 +35,7 @@ import { API } from "../config";
 
 
 
-export const listPaidEnums = () => async (dispatch, getState) => {
+export const listPaidEnums = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_PAID_ENUMS_REQUEST,
@@ -53,16 +54,16 @@ export const listPaidEnums = () => async (dispatch, getState) => {
         const { data } = await axios.get(`${API}/pres/paid-values/${userInfo._id}`, config)
 
         dispatch({
-            type: LIST_PAID_ENUMS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+                type: LIST_PAID_ENUMS_SUCCESS,
+                payload: data,
+            })
+            //console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -75,7 +76,7 @@ export const listPaidEnums = () => async (dispatch, getState) => {
 
 
 
-export const createPrescription = (prescrp) => async (dispatch, getState) => {
+export const createPrescription = (prescrp) => async(dispatch, getState) => {
     try {
         dispatch({
             type: PRESCRIPTION_CREATE_REQUEST,
@@ -112,7 +113,7 @@ export const createPrescription = (prescrp) => async (dispatch, getState) => {
 }
 
 
-export const listPrescriptions = () => async (dispatch, getState) => {
+export const listPrescriptions = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_PRESCRIPTION_REQUEST,
@@ -132,15 +133,17 @@ export const listPrescriptions = () => async (dispatch, getState) => {
 
         dispatch({
             type: LIST_PRESCRIPTION_SUCCESS,
-            payload: data,
+            payload: data
         })
-        //console.log(data)
+
+        console.log("prescription")
+        console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -151,7 +154,7 @@ export const listPrescriptions = () => async (dispatch, getState) => {
     }
 }
 
-export const deletePrescription = (id) => async (dispatch, getState) => {
+export const deletePrescription = (id) => async(dispatch, getState) => {
     try {
         dispatch({
             type: PRESCRIPTION_DELETE_REQUEST,
@@ -172,20 +175,20 @@ export const deletePrescription = (id) => async (dispatch, getState) => {
         dispatch({ type: PRESCRIPTION_DELETE_SUCCESS })
     } catch (error) {
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
         dispatch({
-            type: PRESCRIPTION_DELETE_FAIL ,
+            type: PRESCRIPTION_DELETE_FAIL,
             payload: message,
         })
     }
 }
 
-export const listEnumsPrescriptions = () => async (dispatch, getState) => {
+export const listEnumsPrescriptions = () => async(dispatch, getState) => {
     try {
         dispatch({
             type: LIST_PRESCRIPTION_ENUMS_REQUEST,
@@ -203,17 +206,18 @@ export const listEnumsPrescriptions = () => async (dispatch, getState) => {
 
         const { data } = await axios.get(`${API}/pres/take-values/${userInfo._id}`, config)
 
-        dispatch({
-            type: LIST_PRESCRIPTION_ENUMS_SUCCESS,
-            payload: data,
-        })
-        //console.log(data)
+        // dispatch({
+        //         type: LIST_PRESCRIPTION_ENUMS_SUCCESS,
+        //         payload: data,
+        // })
+        console.log("junaid")
+        console.log(data)
     } catch (error) {
         console.log(error)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -224,7 +228,7 @@ export const listEnumsPrescriptions = () => async (dispatch, getState) => {
     }
 }
 
-export const updatePrescription = (pres) => async (dispatch, getState) => {
+export const updatePrescription = (pres) => async(dispatch, getState) => {
     try {
         dispatch({
             type: UPDATE_PRESCRIPTION_REQUEST,
@@ -256,9 +260,9 @@ export const updatePrescription = (pres) => async (dispatch, getState) => {
     } catch (error) {
         console.log(error.response)
         const message =
-            error.response && error.response.data.message
-                ? error.response.data.message
-                : error.message
+            error.response && error.response.data.message ?
+            error.response.data.message :
+            error.message
         if (message === 'Not authorized, token failed') {
             dispatch(logout())
         }
@@ -269,7 +273,7 @@ export const updatePrescription = (pres) => async (dispatch, getState) => {
     }
 }
 
-export const prescriptionDetails = (id) => async (dispatch, getState) => {
+export const prescriptionDetails = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: PRESCRIPTION_DETAILS_REQUEST })
 
@@ -296,16 +300,14 @@ export const prescriptionDetails = (id) => async (dispatch, getState) => {
         console.log(error)
         dispatch({
             type: PRESCRIPTION_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message,
         })
     }
 }
 
 
-export const prescriptionUsersDetails = (id) => async (dispatch, getState) => {
+export const prescriptionUsersDetails = (id) => async(dispatch, getState) => {
     try {
         dispatch({ type: PRESCRIPTION_USER_DETAILS_REQUEST })
 
@@ -332,10 +334,8 @@ export const prescriptionUsersDetails = (id) => async (dispatch, getState) => {
         console.log(error)
         dispatch({
             type: PRESCRIPTION_USER_DETAILS_FAIL,
-            payload:
-                error.response && error.response.data.message
-                    ? error.response.data.message
-                    : error.message,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message : error.message,
         })
     }
 }

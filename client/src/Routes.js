@@ -68,7 +68,7 @@ const Routes = () => {
         <Route path="/signin" exact component={Signin} />
         <AdminRoute path="/" exact component={AdminDashboard} />
         <AdminRoute path="/profile/:userId" exact component={Profile} />
-        {/* <AdminRoute path="/update/users/:id" exact component={UpdateUsers} /> */}
+        <AdminRoute path="/update/users/:id" exact component={UpdateUsers} />
         <AdminRoute path="/test-result" exact component={ListTestResult} />
         <AdminRoute
           path="/list-prescriptions"

@@ -20,17 +20,17 @@ const  AddPatientDetails = ({ history: history1}) => {
 
 
     const [user, setUser] = useState('')
-    const [lastName, setLastName] = useState('curry')
-    const [idNumber, setIdNumber] = useState(2222556)
+    const [name, setName] = useState('')
+    const [idNumber, setIdNumber] = useState()
     const [regDate, setRegDate] = useState(new Date());
-    const [address, setAddress] = useState('Nairobi')
-    const [cell, setCell] = useState(56755575)
-    const [birthDate, setBirthDate] = useState(new Date())
-    const [residence, setResidence] = useState('Kilimani')
+    const [address, setAddress] = useState('NoorPur Bahawalpur')
+    // const [cell, setCell] = useState(56755575)
+    // const [birthDate, setBirthDate] = useState(new Date())
+    // const [residence, setResidence] = useState('Kilimani')
     // const [email, setEmail] = useState('steph@gmail.com')
-    const [phone, setPhone] = useState('8768766786')
-    const [guardian, setGuardian] = useState('smart')
-    const [relation, setRelation] = useState('cousin')
+    const [phone, setPhone] = useState('03123456789')
+    // const [guardian, setGuardian] = useState('smart')
+    // const [relation, setRelation] = useState('cousin')
     const [gender, setGender] = useState('Male')
     const [statusPatient, setStatusPatient] = useState('Cured')
     const [patientType, setPatientType] = useState('In Patient')
@@ -99,10 +99,10 @@ const  AddPatientDetails = ({ history: history1}) => {
         );
 
     const submitHandler = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
 
-     dispatch(createPatient({ user, lastName, idNumber, regDate,
-          address, cell, birthDate, residence, phone, guardian, relation, gender, statusPatient, patientType}))
+     dispatch(createPatient({ user, name, idNumber, regDate,
+          address, phone, gender, statusPatient, patientType}))
 
     }
 
@@ -141,7 +141,7 @@ const  AddPatientDetails = ({ history: history1}) => {
         <div className="form-group col-md-12">
             <form onSubmit={submitHandler}>
                 <div className="form-row">
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-4">
                         <label className="text-muted font-weight-bold">User</label>
                         <select onChange={(e) => setUser(e.target.value)} className="form-control">
                             <option>Select Patient</option>
@@ -153,31 +153,68 @@ const  AddPatientDetails = ({ history: history1}) => {
                             ))}
                         </select>
                     </div>
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Last Name</label>
-                        <input type="text" className="form-control"  placeholder="Last Number" value={lastName}
-                               onChange={(e) => setLastName(e.target.value)}/>
+                    <div className="form-group col-md-4">
+                        <label className="font-weight-bold" htmlFor="inputAddress"> Name</label>
+                        <input type="text" className="form-control"  placeholder="Name" value={name}
+                               onChange={(e) => setName(e.target.value)}/>
                     </div>
-                    <div className="form-group col-md-3">
+                    {/* <div className="form-group col-md-3">
                         <label className="font-weight-bold" htmlFor="inputAddress">Id Number</label>
                         <input type="text" className="form-control"  placeholder="Id Number" value={idNumber}
                                onChange={(e) => setIdNumber(e.target.value)}/>
-                    </div>
+                    </div> */}
                     <div className="form-group col-md-3">
                         <label className="font-weight-bold" htmlFor="inputAddress">Registration date</label>
                         <DatePicker selected={regDate} onChange={date => setRegDate(date)} className="form-control" />
                     </div>
                 </div>
 
+                {/* <div className="form-row"> */}
+
+
                 <div className="form-row">
-                    <div className="form-group col-md-3">
+                <div className="form-group col-md-4">
                         <label className="font-weight-bold" htmlFor="exampleFormControlTextarea1">Address</label>
                         <textarea className="form-control"
-                                  placeholder="write address" rows="3" value={address}
+                                  placeholder="write address" rows="1" value={address}
                                   onChange={(e) => setAddress(e.target.value)}/>
                     </div>
 
+                    <div className="form-group col-md-4">
+                        <label className="font-weight-bold" htmlFor="inputAddress">phone</label>
+                        <input type="phone" className="form-control"  placeholder="phone" value={phone}
+                               onChange={(e) => setPhone(e.target.value)}/>
+                    </div>
+
+
+                    <div className="form-group col-md-4">
+                        <label className="font-weight-bold" htmlFor="exampleFormControlSelect1">Gender</label>
+                        <select onChange={(e) => setGender(e.target.value)} className="form-control" id="exampleFormControlSelect1">
+                            {genders &&
+                            genders.map((c, i) => (
+                                <option key={i} value={c}>
+                                    {c}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    {/* <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Gurdian</label>
+                        <input type="text" className="form-control"  placeholder="guardian" value={guardian}
+                               onChange={(e) => setGuardian(e.target.value)}/>
+                    </div>
                     <div className="form-group col-md-3">
+                        <label className="font-weight-bold" htmlFor="inputAddress">Relation</label>
+                        <input type="text" className="form-control"  placeholder="relation" value={relation}
+                               onChange={(e) => setRelation(e.target.value)}/>
+                    </div> */}
+
+
+
+
+                </div>
+                <div>
+                    {/* <div className="form-group col-md-3">
                         <label className="font-weight-bold" htmlFor="inputAddress">Cell No</label>
                         <input type="text" className="form-control"  placeholder="cell no" value={cell}
                                onChange={(e) => setCell(e.target.value)}/>
@@ -193,43 +230,12 @@ const  AddPatientDetails = ({ history: history1}) => {
                         <label className="font-weight-bold" htmlFor="inputAddress">Residence</label>
                         <input type="text" className="form-control"  placeholder="residence" value={residence}
                                onChange={(e) => setResidence(e.target.value)}/>
-                    </div>
+                    </div> */}
 
                 </div>
 
 
-                <div className="form-row">
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">phone</label>
-                        <input type="phone" className="form-control"  placeholder="phone" value={phone}
-                               onChange={(e) => setPhone(e.target.value)}/>
-                    </div>
 
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Gurdian</label>
-                        <input type="text" className="form-control"  placeholder="guardian" value={guardian}
-                               onChange={(e) => setGuardian(e.target.value)}/>
-                    </div>
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="inputAddress">Relation</label>
-                        <input type="text" className="form-control"  placeholder="relation" value={relation}
-                               onChange={(e) => setRelation(e.target.value)}/>
-                    </div>
-
-
-                    <div className="form-group col-md-3">
-                        <label className="font-weight-bold" htmlFor="exampleFormControlSelect1">Gender</label>
-                        <select onChange={(e) => setGender(e.target.value)} className="form-control" id="exampleFormControlSelect1">
-                            {genders &&
-                            genders.map((c, i) => (
-                                <option key={i} value={c}>
-                                    {c}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                </div>
 
                 <div className="form-row">
                     <div className="form-group col-md-4">

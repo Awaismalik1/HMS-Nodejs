@@ -17,14 +17,14 @@ import { prescriptionUsersDetails } from '../actions/prescriptionActions'
 const PatDetails = ({ history, match }) => {
 
     const id = match.params.id
-    
+
 
     const dispatch = useDispatch()
 
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
-   
+
 
 
     useEffect(() => {
@@ -47,7 +47,7 @@ const PatDetails = ({ history, match }) => {
 
     const prescDetailsUser = useSelector((state) => state.prescDetailsUser)
     const { prescriptions } = prescDetailsUser
-    
+
     console.log(prescriptions)
 
 
@@ -60,10 +60,10 @@ const PatDetails = ({ history, match }) => {
                         <h4 className="card-title">User profile</h4>
                     </div>
                     <div className="card-body">
-                        <div className="profile__avatar">
+                        {/* <div className="profile__avatar">
 
                             <img src={`http://localhost:8000${pat.image}`} className="img-fluid rounded-circle"/>
-                        </div>
+                        </div> */}
 
                         <table className="table profile__table">
                             <tbody>
@@ -72,8 +72,8 @@ const PatDetails = ({ history, match }) => {
                                 <td>{pat.user.name}</td>
                             </tr>
                             <tr>
-                                <th><strong>Last Name</strong></th>
-                                <td>{pat.lastName}</td>
+                                <th><strong>Name</strong></th>
+                                <td>{pat.name}</td>
                             </tr>
                             <tr>
                                 <th><strong>Gender</strong></th>
@@ -87,31 +87,31 @@ const PatDetails = ({ history, match }) => {
                                 <th><strong>Id No</strong></th>
                                 <td>{pat.idNumber}</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <th><strong>Cell</strong></th>
                                 <td>{pat.cell}</td>
-                            </tr>
+                            </tr> */}
                             <tr>
                                 <th><strong>Reg Date</strong></th>
                                 <td>{pat.regDate}</td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                                 <th><strong>D.O.B</strong></th>
                                 <td>{pat.birthDate}</td>
-                            </tr>
-                            <tr>
+                            </tr> */}
+                            {/* <tr>
                                 <th><strong>Residence</strong></th>
                                 <td>{pat.residence}</td>
-                            </tr>
-                            <tr>
+                            </tr> */}
+                            {/* <tr>
                                 <th><strong>Guardian</strong></th>
                                 <td>{pat.guardian}</td>
-                            </tr>
+                            </tr> */}
                             <tr>
                                 <th><strong>Address</strong></th>
                                 <td>{pat.address}</td>
                             </tr>
-                            
+
                             </tbody>
                         </table>
 
@@ -159,7 +159,7 @@ const PatDetails = ({ history, match }) => {
                 </table>
             </div>
         </div>
-            
+
         ))
 )
 
@@ -216,7 +216,7 @@ const PatDetails = ({ history, match }) => {
         )
     ))
 
-    
+
 
     return (
         <Layout title="Profile" description="Update your profile" className="container-fluid">

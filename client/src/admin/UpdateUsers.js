@@ -104,15 +104,15 @@ const UpdateUsers = ({ match, history }) => {
               className="small mb-1 font-weight-bold"
               htmlFor="inputNumber"
             >
-              Mobile Number
+              Email
             </label>
             <input
               className="form-control py-4"
-              type="number"
+              type="text"
               //   aria-describedby="emailHelp"
-              placeholder="Enter Mobile Number address"
-              value={Number}
-              onChange={(e) => setNumber(e.target.value)}
+              placeholder="Enter Email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
         </div>
